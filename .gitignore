@@ -1,4 +1,5 @@
 target/
 .idea/
+.aws-sam/
 *.iml
 dependency-reduced-pom.xml
