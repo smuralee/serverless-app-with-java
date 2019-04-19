@@ -1,4 +1,4 @@
-package helloagain;
+package com.smuralee;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

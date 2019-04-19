@@ -1,4 +1,4 @@
-package helloagain;
+package com.smuralee;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

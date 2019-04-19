@@ -1,4 +1,4 @@
-package helloagain;
+package com.smuralee;
 
 import java.util.Collections;
 import java.util.HashMap;
