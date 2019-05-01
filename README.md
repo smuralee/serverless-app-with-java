@@ -4,17 +4,17 @@ This is a sample template for sam-app - Below is a brief explanation of what we 
 
 ```bash
 ├── README.md                                   <-- This instructions file
-├── HelloWorldFunction                          <-- Source for HelloWorldFunction Lambda Function
+├── GreetingFunction                            <-- Source for GreetingFunction Lambda Function
 │   ├── pom.xml                                 <-- Java dependencies
 │   └── src
 │       ├── main
 │       │   └── java
-│       │       └── helloworld
+│       │       └── com.smuralee
 │       │           ├── App.java                <-- Lambda function code
 │       │           └── GatewayResponse.java    <-- POJO for API Gateway Responses object 
 │       └── test                                <-- Unit tests
 │           └── java
-│               └── helloworld
+│               └── com.smuralee
 │                   └── AppTest.java
 └── template.yaml
 ```
@@ -48,17 +48,17 @@ sam build --use-container
 sam local start-api
 ```
 
-If the previous command ran successfully you should now be able to hit the following local endpoint to invoke your function `http://localhost:3000/hello`
+If the previous command ran successfully you should now be able to hit the following local endpoint to invoke your function `http://localhost:3000/greeting`
 
 **SAM CLI** is used to emulate both Lambda and API Gateway locally and uses our `template.yaml` to understand how to bootstrap this environment (runtime, where the source code is, etc.) - The following excerpt is what the CLI will read in order to initialize an API and its routes:
 
 ```yaml
 ...
 Events:
-    HelloWorld:
+    Greeting:
         Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
         Properties:
-            Path: /hello
+            Path: /greeting
             Method: get
 ```
 
@@ -68,11 +68,11 @@ AWS Lambda Java runtime accepts either a zip file or a standalone JAR file - We 
 
 ```yaml
 ...
-    HelloWorldFunction:
+    GreetingFunction:
         Type: AWS::Serverless::Function
         Properties:
-            CodeUri: target/HelloWorld-1.0.jar
-            Handler: helloworld.App::handleRequest
+            CodeUri: target/GreetingFunction-1.0.jar
+            Handler: com.smuralee.App::handleRequest
 ```
 
 Firstly, we need a `S3 bucket` where we can upload our Lambda functions packaged as ZIP before we deploy anything - If you don't have a S3 bucket to store code artifacts then this is a good time to create one:
@@ -113,7 +113,7 @@ aws cloudformation describe-stacks \
 We use `JUnit` for testing our code and you can simply run the following command to run our tests:
 
 ```bash
-cd HelloWorldFunction
+cd GreetingFunction
 mvn test
 ```
 
