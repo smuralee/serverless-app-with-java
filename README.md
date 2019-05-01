@@ -64,6 +64,17 @@ Events:
 
 ## Packaging and deployment
 
+For the local development and testing, we provide the module folder location in the `CodeUri`
+
+```yaml
+...
+    GreetingFunction:
+        Type: AWS::Serverless::Function
+        Properties:
+            CodeUri: GreetingFunction
+            Handler: com.smuralee.App::handleRequest
+```
+
 AWS Lambda Java runtime accepts either a zip file or a standalone JAR file - We use the latter in this example. SAM will use `CodeUri` property to know where to look up for both application and dependencies:
 
 ```yaml
