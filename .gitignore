@@ -3,3 +3,4 @@ target/
 .aws-sam/
 *.iml
 dependency-reduced-pom.xml
+samconfig.toml
